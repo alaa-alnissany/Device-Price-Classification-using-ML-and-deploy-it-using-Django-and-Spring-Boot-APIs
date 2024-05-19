@@ -8,48 +8,47 @@ Device price Classification involves using machine learning techniques to estima
 
 ## Installation
 
-Instructions on how to install and set up the project.
-
+First, activate the virtual environment, after moving to the workspace directory:
+```
+.\Scripts\activate.bat
+```
+Second, install the libraraies in the environment from **requirements.txt** file:
+```
+pip install -r requirements.txt
+```
 ## Usage
 
-A guide on how to use the project, including examples and any command-line instructions.
+First, open CMD and activate the virtual environment if its deactivated, after moving to the workspace directory:
+```
+.\Scripts\activate.bat
+cd DPC
+```
+Second, run the django Server:
+```
+python manage.py runserver
+```
+local host for django API is http://127.0.0.1:8000.
+third, open move to Spring Boot folder "Api", then open CMD there and open VScode using typing this in the CMD:
+```
+Code .
+```
+then open this file as a tab in VScode:
+```
+.\src\main\java\com\DevicePriceClassifier\Api\DpcApplication.java
+```
+and run the server from there. 
+local host for Spring Boot API is http://127.0.0.1:9090.
+## Accessing the APIs
 
-## Contributing
+Django endpoints:
+● POST /api/devices/: Retrieve a list of all devices
+● GET /api/devices/{id}: Retrieve details of a specific device by ID.
+● POST /api/adddevices: Add a new device.
+● POST /api/predict/{deviceId}/: predict the class of specific device by ID.
 
-Guidelines for contributing to the project, including how to fork, submit issues, and propose pull requests.
+Spring Boot endpoints:
+● POST /api/devices/: Retrieve a list of all devices
+● GET /api/devices/{id}: Retrieve details of a specific device by ID.
+● POST /api/devices: Add a new device.
+● POST /api/predict/{deviceId}: predict the class of specific device by ID.
 
-## License
-
-Information about the license for the project.
-
-## Authors
-
-A list of authors and contributors to the project, along with their contact information and roles.
-
-## Dependencies
-
-A list of dependencies or required software for the project, including versions if necessary.
-
-## Compatibility
-
-Information on compatibility with different platforms, programming languages, or other tools.
-
-## Limitations
-
-A list of known limitations or potential issues with the project.
-
-## Changelog
-
-A log of changes made to the project over time, including updates, bug fixes, and new features.
-
-## FAQ
-
-A list of frequently asked questions related to the project.
-
-## External Links
-
-Any relevant external links, resources, or references related to the project.
-
-## Contact
-
-Contact information for the project maintainer(s) or a link to the project's official support channel.
