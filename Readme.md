@@ -41,14 +41,25 @@ local host for Spring Boot API is http://127.0.0.1:9090.
 ## Accessing the APIs
 
 Django endpoints:
+
 ● POST /api/devices/: Retrieve a list of all devices
+
 ● GET /api/devices/{id}: Retrieve details of a specific device by ID.
+
 ● POST /api/adddevices: Add a new device.
+
 ● POST /api/predict/{deviceId}/: predict the class of specific device by ID.
 
 Spring Boot endpoints:
+
 ● POST /api/devices/: Retrieve a list of all devices
+
 ● GET /api/devices/{id}: Retrieve details of a specific device by ID.
+
 ● POST /api/devices: Add a new device.
+
 ● POST /api/predict/{deviceId}: predict the class of specific device by ID.
 
+## Important Note:
+
+You can find **Devices_price_classification.ipynb** that demonstrate the Data Engineering and Model selection and training.
