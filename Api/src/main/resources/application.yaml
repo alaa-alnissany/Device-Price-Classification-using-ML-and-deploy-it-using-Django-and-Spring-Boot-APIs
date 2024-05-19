@@ -1,0 +1,6 @@
+spring:
+ application:
+  name: API
+server:
+ port:
+  9090

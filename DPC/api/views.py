@@ -9,10 +9,20 @@ from rest_framework import status
 import joblib
 import pandas as pd
 
+# Loading the trained Pipeline
 model = joblib.load('models/pipe.joblib')
 
 @api_view(['POST'])
 def get_all_devices(request):
+    """
+    Retrieve all devices from the database.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        Response: A Response containing list of all devices on the database.
+    """
     try:
         # Retrieve all devices from the database
         devices = Device.objects.all()
@@ -22,7 +32,7 @@ def get_all_devices(request):
 
         return Response(serializer.data)
     except Exception as e:
-        # Handle any exceptions (e.g., database errors)
+        # Handle any exceptions 
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 @api_view(['GET'])
@@ -55,7 +65,7 @@ def get_device_details(request, device_id):
 @api_view(['POST'])
 def add_device(request):
     """
-    Add a new device.
+    Add a new device and give it an ID.
 
     Args:
         request: The HTTP request object.
@@ -65,7 +75,7 @@ def add_device(request):
     """
     try:
         # Deserialize the request data using DeviceSerializer
-        serializer = DeviceSerializer(data=request.data)
+        serializer = DeviceSerializer(data=request.data) # ,many=True
         if serializer.is_valid():
             # Save the new device to the database
             serializer.save()
@@ -75,15 +85,25 @@ def add_device(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
-        # Handle any other exceptions (e.g., database errors)
+        # Handle any other exceptions.
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
 def predict_device_price(request, device_id):
+    """
+    Retrieve the device with the given ID.
+
+    Args:
+        request: The HTTP request object.
+        device_id (int): The ID of the device to retrieve.
+
+    Returns:
+        Response: A Response containing the device details.
+    """
     # Retrieve the device with the given ID
     device = get_object_or_404(Device, pk=device_id)
     
-    
+    # Transfare the boolean string to a boolean value
     def true_false(str_:bytes):
         if str_ == b'True':
             return True
@@ -128,5 +148,5 @@ def predict_device_price(request, device_id):
         return JsonResponse({'predicted_price': str(predicted_price_range)})
     
     except Exception as e:
-        # Handle any exceptions (e.g., invalid input data)
+        # Handle any exceptions
         return JsonResponse({'error': str(e)}, status=400)
